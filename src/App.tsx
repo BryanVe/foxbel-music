@@ -1,3 +1,5 @@
-const App = () => <div>Foxbel Music</div>
+import { RootView } from './views'
+
+const App = () => <RootView />
 
 export default App
