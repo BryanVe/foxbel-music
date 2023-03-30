@@ -1,11 +1,20 @@
+import { RootLayoutContext } from '@/context'
+import { useContext } from 'react'
 import { Brand, Menu } from './components'
-import { Wrapper } from './styledComponents'
+import { Backdrop, Wrapper } from './styledComponents'
 
-const Sidebar = () => (
-  <Wrapper>
-    <Brand />
-    <Menu />
-  </Wrapper>
-)
+const Sidebar = () => {
+  const { sidebarOpened, closeSidebar } = useContext(RootLayoutContext)
+
+  return (
+    <>
+      <Backdrop opened={sidebarOpened} onClick={closeSidebar} />
+      <Wrapper opened={sidebarOpened}>
+        <Brand />
+        <Menu />
+      </Wrapper>
+    </>
+  )
+}
 
 export default Sidebar

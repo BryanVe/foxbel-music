@@ -1,5 +1,5 @@
 const Recent = () => {
-  return <div>recent</div>
+  return <div>Recent</div>
 }
 
 export default Recent
