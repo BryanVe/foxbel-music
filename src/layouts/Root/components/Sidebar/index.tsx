@@ -1,11 +1,11 @@
 import { Brand, Menu } from './components'
-import { Container } from './styledComponents'
+import { Wrapper } from './styledComponents'
 
 const Sidebar = () => (
-  <Container>
+  <Wrapper>
     <Brand />
     <Menu />
-  </Container>
+  </Wrapper>
 )
 
 export default Sidebar

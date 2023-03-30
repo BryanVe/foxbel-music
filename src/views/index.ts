@@ -1,1 +1,1 @@
-export { default as RootView } from './Root'
+export { default as RecentView } from './Recent'
