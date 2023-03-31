@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   padding-top: 30px;
 
-  @media (max-width: 992px) {
+  @media (max-width: 1312px) {
     flex-direction: column-reverse;
     gap: 16px;
   }
@@ -22,7 +22,7 @@ export const Logo = styled.img`
   width: 52px;
   cursor: pointer;
 
-  @media (min-width: 992px) {
+  @media (min-width: 1312px) {
     display: none;
   }
 `

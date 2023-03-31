@@ -20,11 +20,11 @@ const menu: Submenu[] = [
       },
       {
         label: 'Canciones',
-        path: '/songs',
+        path: '/tracks',
       },
       {
         label: 'Estaciones',
-        path: '/stations',
+        path: '/radio',
       },
     ],
   },

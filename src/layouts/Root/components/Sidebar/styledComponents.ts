@@ -14,7 +14,7 @@ export const Wrapper = styled.aside<WrapperProps>`
   gap: 30px;
   box-sizing: border-box;
 
-  @media (max-width: 992px) {
+  @media (max-width: 1312px) {
     transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     position: absolute;
     height: 100%;
@@ -29,7 +29,7 @@ type BackdropProps = {
 }
 
 export const Backdrop = styled.div<BackdropProps>`
-  @media (max-width: 992px) {
+  @media (max-width: 1312px) {
     position: absolute;
     width: 100vw;
     height: 100vh;

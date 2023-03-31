@@ -1,3 +1,5 @@
 export { default as RecentView } from './Recent'
 export { default as RedirectView } from './Redirect'
 export { default as CallbackView } from './Callback'
+export { default as ArtistsView } from './Artists'
+export { default as ArtistDetailsView } from './ArtistDetails'
