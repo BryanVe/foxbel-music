@@ -31,7 +31,11 @@ const Banner: FC<BannerProps> = (props) => {
     <Wrapper>
       <AlbumPhotoWrapper>
         <AlbumPhoto alt={track.title} src={track.album.cover_medium} />
-        <AlbumPhotoOverlay className='photo-overlay' current={current}>
+        <AlbumPhotoOverlay
+          className='photo-overlay'
+          current={current}
+          onClick={() => selectTrack(track.id)}
+        >
           <FontAwesomeIcon color='#FFF' size='6x' icon={faPlay} />
         </AlbumPhotoOverlay>
       </AlbumPhotoWrapper>

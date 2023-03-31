@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   flex-grow: 1;
   max-width: 524px;
   border: 1px solid #828282;

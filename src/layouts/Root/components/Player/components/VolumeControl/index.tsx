@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeMute, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
-import { Wrapper } from './styledComponents'
+import { Slider, Wrapper } from './styledComponents'
 
 type VolumeControlProps = {
   muted: boolean
@@ -14,7 +14,7 @@ const VolumeControl: FC<VolumeControlProps> = (props) => {
 
   return (
     <Wrapper>
-      <input
+      <Slider
         type='range'
         min='0'
         max='100'
