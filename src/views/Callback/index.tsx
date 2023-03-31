@@ -5,9 +5,12 @@ const Callback = () => {
   const location = useLocation()
 
   useEffect(() => {
-    const deezerCode = location.search.split('=')[1]
+    const params = new URLSearchParams(location.hash.substring(1))
+    const accessToken = params.get('access_token')
+    const expires = params.get('expires')
 
-    if (deezerCode) localStorage.setItem('DEEZER_CODE', deezerCode)
+    if (accessToken) localStorage.setItem('DEEZER_ACCESS_TOKEN', accessToken)
+    if (expires) localStorage.setItem('DEEZER_ACCESS_TOKEN_EXPIRES', expires)
   }, [])
 
   return <Navigate replace to='/' />

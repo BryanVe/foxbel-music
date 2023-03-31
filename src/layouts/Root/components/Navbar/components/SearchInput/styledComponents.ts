@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   flex-grow: 1;
-  max-width: 400px;
+  max-width: 524px;
+  margin-right: 16px;
   border: 1px solid #828282;
   border-radius: 100px;
   padding: 0 16px;

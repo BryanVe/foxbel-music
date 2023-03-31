@@ -1,12 +1,10 @@
-import { DEEZER_APP_ID, DEEZER_REDIRECT_URI } from '@/config/keys'
+import { DEEZER_AUTH_URI } from '@/config/constants'
 import { useEffect } from 'react'
 
 const Redirect = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
-      location.replace(
-        `https://connect.deezer.com/oauth/auth.php?app_id=${DEEZER_APP_ID}&redirect_uri=${DEEZER_REDIRECT_URI}&perms=basic_access,email`
-      )
+      location.replace(DEEZER_AUTH_URI)
     }, 2000)
 
     return () => clearTimeout(timeout)

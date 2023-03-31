@@ -5,11 +5,11 @@ import { RedirectView, CallbackView, RecentView } from './views'
 const App = () => (
   <BrowserRouter>
     <Routes>
-      <Route Component={RootLayout}>
-        <Route index path='/' Component={RecentView} />
-      </Route>
-      <Route path='/redirect' Component={RedirectView} />
       <Route path='/callback' Component={CallbackView} />
+      <Route path='/redirect' Component={RedirectView} />
+      <Route Component={RootLayout}>
+        <Route index path='/*' Component={RecentView} />
+      </Route>
     </Routes>
   </BrowserRouter>
 )
