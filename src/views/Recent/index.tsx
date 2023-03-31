@@ -1,100 +1,56 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { DEEZER_URI } from '@/config/keys'
-import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-
-const Wrapper = styled.div``
-
-const ArtistPhotoWrapper = styled.div`
-  position: relative;
-  cursor: pointer;
-
-  &:hover .overlay {
-    opacity: 1;
-  }
-`
-
-const ArtistPhoto = styled.img`
-  width: 100%;
-`
-
-const Overlay = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background-color: rgba(255, 255, 255, 0.2);
-  opacity: 0;
-  transition: all 0.4s;
-  display: grid;
-  place-items: center;
-`
+import { Banner } from './components'
+import { RootLayoutContext } from '@/context'
+import { GridTrack } from '@/components'
+import { Grid, Subtitle } from '@/styledComponents'
+import { Wrapper } from './styledComponents'
 
 const Recent = () => {
-  const [artists, setArtists] = useState<Artist[]>()
+  const { selectTrack, addTracks, tracks, currentTrackIndex, paused } =
+    useContext(RootLayoutContext)
 
-  const fetchArtists = useCallback(async () => {
+  const fetchTracks = useCallback(async () => {
     try {
       const { data } = await axios.get(
-        `${DEEZER_URI}/chart/0/artists?output=json&limit=20`
+        `${DEEZER_URI}/chart/0/tracks?output=json&limit=30`
       )
 
-      setArtists(data.data)
+      addTracks(data.data)
     } catch (error) {
       console.log(error)
     }
   }, [])
 
   useEffect(() => {
-    fetchArtists()
-  }, [fetchArtists])
+    fetchTracks()
+  }, [fetchTracks])
 
-  return (
-    <Wrapper>
-      <span
-        style={{
-          fontSize: 22,
-          color: '#E86060',
-          fontWeight: 700,
-        }}
-      >
-        Resultados
-      </span>
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(160px  , 1fr))',
-          gap: 32,
-          marginTop: 20,
-        }}
-      >
-        {artists &&
-          artists.map((artist) => (
-            <div key={artist.id}>
-              <ArtistPhotoWrapper>
-                <ArtistPhoto alt={artist.name} src={artist.picture_medium} />
-                <Overlay className='overlay'>
-                  <FontAwesomeIcon
-                    color='#E86060'
-                    size='3x'
-                    icon={faArrowRight}
-                  />
-                </Overlay>
-              </ArtistPhotoWrapper>
-              <span
-                style={{
-                  fontWeight: 700,
-                }}
-              >
-                {artist.name}
-              </span>
-            </div>
+  return !tracks ? (
+    <span>Cargando...</span>
+  ) : (
+    <>
+      <Banner
+        track={tracks[0]}
+        paused={paused}
+        current={currentTrackIndex === 0}
+      />
+      <Wrapper>
+        <Subtitle>Resultados</Subtitle>
+        <Grid>
+          {tracks.map((track, index) => (
+            <GridTrack
+              key={track.id}
+              current={currentTrackIndex === index}
+              paused={paused}
+              selectTrack={selectTrack}
+              track={track}
+            />
           ))}
-      </div>
-    </Wrapper>
+        </Grid>
+      </Wrapper>
+    </>
   )
 }
 

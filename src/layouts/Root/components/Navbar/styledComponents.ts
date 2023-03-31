@@ -2,9 +2,12 @@ import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   display: flex;
-  padding: 0 40px;
+  padding: 32px 40px;
   justify-content: space-between;
-  padding-top: 30px;
+  z-index: 1000;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
 
   @media (max-width: 1312px) {
     flex-direction: column-reverse;
