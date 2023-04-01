@@ -1,11 +1,11 @@
 import { useCallback, useContext, useEffect } from 'react'
-import axios from 'axios'
 import { DEEZER_URI } from '@/config/keys'
 import { Banner } from './components'
 import { RootLayoutContext } from '@/context'
 import { GridTrack } from '@/components'
 import { Grid, Subtitle } from '@/styledComponents'
 import { Wrapper } from './styledComponents'
+import fetchJsonp from 'fetch-jsonp'
 
 const Recent = () => {
   const { selectTrack, addTracks, tracks, currentTrackIndex, paused } =
@@ -13,9 +13,10 @@ const Recent = () => {
 
   const fetchTracks = useCallback(async () => {
     try {
-      const { data } = await axios.get(
-        `${DEEZER_URI}/chart/0/tracks?output=json&limit=30`
+      const response = await fetchJsonp(
+        `${DEEZER_URI}/chart/0/tracks?output=jsonp&limit=30`
       )
+      const data = await response.json()
 
       addTracks(data.data)
     } catch (error) {

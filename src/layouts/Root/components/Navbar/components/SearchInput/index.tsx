@@ -2,8 +2,9 @@ import { Input, Wrapper } from './styledComponents'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { useContext, useState } from 'react'
-import axios from 'axios'
 import { RootLayoutContext } from '@/context'
+import fetchJsonp from 'fetch-jsonp'
+import { DEEZER_URI } from '@/config/keys'
 
 const SearchInput = () => {
   const { addTracks } = useContext(RootLayoutContext)
@@ -15,9 +16,10 @@ const SearchInput = () => {
 
       if (query.length < 1) return
 
-      const { data } = await axios.get(
-        `https://api.deezer.com/search/track?q=${query}`
+      const response = await fetchJsonp(
+        `${DEEZER_URI}/search/track?output=jsonp&limit=30&q=${query}`
       )
+      const data = await response.json()
 
       addTracks(data.data)
     } catch (error) {
